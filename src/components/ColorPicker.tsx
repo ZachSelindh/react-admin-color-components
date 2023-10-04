@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { PhotoshopPicker } from 'react-color';
+import * as ReactColor from 'react-color';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -11,16 +11,16 @@ import { ColorSquare } from './ColorSquare';
 export const ColorPicker = props => {
     const {
         className,
-        label,
+        colorSquareOptions,
+        disabled,
         helperText,
+        label,
         margin,
-        onBlur,
-        onChange,
-        options = {},
+        picker,
+        pickerOptions,
         resource,
         source,
         variant,
-        disabled,
         ...rest
     } = props;
 
@@ -33,8 +33,6 @@ export const ColorPicker = props => {
     } = useInput({
         resource,
         source,
-        onBlur,
-        onChange,
         ...rest,
     });
 
@@ -55,6 +53,8 @@ export const ColorPicker = props => {
         setShowPicker(false);
     };
 
+    const Picker = ReactColor[`${picker}Picker`];
+
     return (
         <>
             <TextField
@@ -63,12 +63,7 @@ export const ColorPicker = props => {
                 disabled={disabled}
                 className={clsx('ra-input', `ra-input-${source}`, className)}
                 error={(isTouched || isSubmitted) && invalid}
-                label={
-                    '' !== label &&
-                    false !== label && (
-                        <FieldTitle label={label} source={source} resource={resource} isRequired={isRequired} />
-                    )
-                }
+                label={<FieldTitle label={label} source={source} resource={resource} isRequired={isRequired} />}
                 helperText={
                     <InputHelperText
                         touched={isTouched || isSubmitted}
@@ -77,7 +72,7 @@ export const ColorPicker = props => {
                     />
                 }
                 InputProps={{
-                    endAdornment: <ColorSquare backgroundColor={field.value} />,
+                    endAdornment: <ColorSquare {...colorSquareOptions} backgroundColor={field.value} />,
                 }}
                 onClick={() => setShowPicker(true)}
                 margin={margin}
@@ -85,9 +80,9 @@ export const ColorPicker = props => {
             />
             <Dialog open={showPicker}>
                 <DialogContent>
-                    <PhotoshopPicker
-                        {...options}
-                        header="Fleet Color"
+                    <Picker
+                        {...pickerOptions}
+                        header={label}
                         color={field.value}
                         onChangeComplete={handleChange}
                         onAccept={handleConfirm}
@@ -100,14 +95,24 @@ export const ColorPicker = props => {
 };
 
 ColorPicker.propTypes = {
-    label: PropTypes.string,
-    options: PropTypes.object,
-    source: PropTypes.string,
     className: PropTypes.string,
+    label: PropTypes.string,
+    pickerOptions: PropTypes.object,
+    colorSquareOptions: PropTypes.shape({
+        height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
+    source: PropTypes.string,
+    picker: (props, propName, componentName) =>
+        !ReactColor[`${props[propName]}Picker`] &&
+        new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`.`),
 };
 
 ColorPicker.defaultProps = {
     defaultValue: '',
+    colorSquareOptions: {},
     margin: 'dense',
+    picker: 'Photoshop',
+    pickerOptions: {},
     variant: 'filled',
 };

@@ -6,14 +6,14 @@ import get from 'lodash/get';
 import { ColorSquare } from './ColorSquare';
 
 export const ColorField = ({ source, ...props }) => {
-    const { className } = props;
+    const { className, colorSquareOptions } = props;
     const record = useRecordContext(props);
 
     const fieldValue = get(record, source);
 
     return (
         <div style={{ display: 'flex' }}>
-            <ColorSquare backgroundColor={fieldValue} />
+            <ColorSquare {...colorSquareOptions} backgroundColor={fieldValue} />
             <Typography className={className}>{fieldValue}</Typography>
         </div>
     );
@@ -23,4 +23,10 @@ ColorField.propTypes = {
     className: PropTypes.string,
     record: PropTypes.object,
     source: PropTypes.string.isRequired,
+};
+
+ColorField.defaultProps = {
+    className: '',
+    source: '',
+    colorSquareOptions: {},
 };
