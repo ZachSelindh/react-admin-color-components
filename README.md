@@ -10,7 +10,17 @@ npm install react-admin-color-components --save
 
 ## Usage
 
-This package provides a react-admin ColorInput component based on react-color, as well as a corresponding ColorField and ColorSquare (which is used to display the current color in both aforementioned components).
+![colorpicker.PNG](assets/colorpicker.PNG)
+
+This package provides a ColorInput component based on the [react-color](https://www.npmjs.com/package/react-color) pickers librray, as well as a corresponding ColorField and ColorSquare (which is used to display the current color in both aforementioned components) for use in a [react-admin](https://marmelab.com/react-admin/) application.
+
+The ColorInput's default picker is the PhotoshopPicker, but the prop `picker` can be used to override the default. Additional props for the picker can be passed as part of `pickerOptions`.
+
+The ColorInput accepts most react-admin input props, including `validate`, `defaultValue`, `fullWidth`, `helperText`, `sx`, etc., and (obviously) requires a `source` and a `label` to be defined in order to work correctly as a form input or filter.
+
+The ColorInput uses a "fragile controlled" input strategy in which the current field value is stored in React state while the picker is open, and the field value is only updated once `onChangeComplete` is called, which is usually at the point of closing the picker. If the picker is closed without confirming, such as clicking `Cancel` on the Photoshop picker, the field value will not be updated.
+
+This package is based on the previous work of [alexgschwend](https://github.com/alexgschwend) and [vascofg](https://github.com/vascofg), who built similar component libraries.
 
 ## Contributing
 
@@ -18,12 +28,4 @@ I welcome opened issues and pull requests! This package was primarily geared tow
 
 ## License
 
-(MIT License)
-
-Copyright (c) 2023 Zach Selindh
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This library is licensed under the [MIT License](LICENSE).
