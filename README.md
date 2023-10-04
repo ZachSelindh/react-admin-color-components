@@ -10,7 +10,7 @@ npm install react-admin-color-components --save
 
 ## Usage
 
-![colorpicker.PNG](assets/colorpicker.PNG)
+![colorpicker.png](assets/colorpicker.png)
 
 This package provides a ColorInput component based on the [react-color](https://www.npmjs.com/package/react-color) pickers librray, as well as a corresponding ColorField and ColorSquare (which is used to display the current color in both aforementioned components) for use in a [react-admin](https://marmelab.com/react-admin/) application.
 
