@@ -5,24 +5,33 @@ import * as ReactColor from 'react-color';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import { useInput, FieldTitle, InputHelperText } from 'react-admin';
+import { useInput, FieldTitle, sanitizeInputRestProps, InputHelperText, CommonInputProps } from 'react-admin';
 import { ColorSquare } from './ColorSquare';
+import { TcolorSquareOptions } from './ColorField';
 
-export const ColorPicker = props => {
-    const {
-        className,
-        colorSquareOptions,
-        disabled,
-        helperText,
-        label,
-        margin,
-        picker,
-        pickerOptions,
-        resource,
-        source,
-        variant,
-        ...rest
-    } = props;
+export type ColorPickerProps = CommonInputProps & {
+    className?: string;
+    colorSquareOptions?: TcolorSquareOptions;
+    pickerOptions?: { [x: string]: any };
+    picker?:
+        | 'Alpha'
+        | 'Block'
+        | 'Chrome'
+        | 'Circle'
+        | 'Compact'
+        | 'Github'
+        | 'Hue'
+        | 'Material'
+        | 'Photoshop'
+        | 'Sketch'
+        | 'Slider'
+        | 'Swatches'
+        | 'Twitter';
+};
+
+export const ColorPicker = (props: ColorPickerProps) => {
+    const { className, colorSquareOptions, helperText, label, picker, pickerOptions, resource, source, ...rest } =
+        props;
 
     const {
         field,
@@ -58,9 +67,9 @@ export const ColorPicker = props => {
     return (
         <>
             <TextField
-                id={id}
+                {...sanitizeInputRestProps(rest)}
                 {...field}
-                disabled={disabled}
+                id={id}
                 className={clsx('ra-input', `ra-input-${source}`, className)}
                 error={(isTouched || isSubmitted) && invalid}
                 label={<FieldTitle label={label} source={source} resource={resource} isRequired={isRequired} />}
@@ -75,8 +84,6 @@ export const ColorPicker = props => {
                     endAdornment: <ColorSquare {...colorSquareOptions} backgroundColor={field.value} />,
                 }}
                 onClick={() => setShowPicker(true)}
-                margin={margin}
-                variant={variant}
             />
             <Dialog open={showPicker}>
                 <DialogContent>
