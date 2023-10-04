@@ -9,7 +9,7 @@ import { useInput, FieldTitle, sanitizeInputRestProps, InputHelperText, CommonIn
 import { ColorSquare } from './ColorSquare';
 import { TcolorSquareOptions } from './ColorField';
 
-export type ColorPickerProps = CommonInputProps & {
+export type ColorInputProps = CommonInputProps & {
     className?: string;
     colorSquareOptions?: TcolorSquareOptions;
     pickerOptions?: { [x: string]: any };
@@ -29,7 +29,7 @@ export type ColorPickerProps = CommonInputProps & {
         | 'Twitter';
 };
 
-export const ColorPicker = (props: ColorPickerProps) => {
+export const ColorInput = (props: ColorInputProps) => {
     const { className, colorSquareOptions, helperText, label, picker, pickerOptions, resource, source, ...rest } =
         props;
 
@@ -101,7 +101,7 @@ export const ColorPicker = (props: ColorPickerProps) => {
     );
 };
 
-ColorPicker.propTypes = {
+ColorInput.propTypes = {
     className: PropTypes.string,
     label: PropTypes.string,
     pickerOptions: PropTypes.object,
@@ -115,7 +115,7 @@ ColorPicker.propTypes = {
         new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`.`),
 };
 
-ColorPicker.defaultProps = {
+ColorInput.defaultProps = {
     defaultValue: '',
     colorSquareOptions: {},
     margin: 'dense',

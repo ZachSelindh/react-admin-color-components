@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { CommonInputProps } from 'react-admin';
 import { TcolorSquareOptions } from './ColorField';
-export type ColorPickerProps = CommonInputProps & {
+export type ColorInputProps = CommonInputProps & {
     className?: string;
     colorSquareOptions?: TcolorSquareOptions;
     pickerOptions?: {
@@ -9,8 +9,8 @@ export type ColorPickerProps = CommonInputProps & {
     };
     picker?: 'Alpha' | 'Block' | 'Chrome' | 'Circle' | 'Compact' | 'Github' | 'Hue' | 'Material' | 'Photoshop' | 'Sketch' | 'Slider' | 'Swatches' | 'Twitter';
 };
-export declare const ColorPicker: {
-    (props: ColorPickerProps): import("react/jsx-runtime").JSX.Element;
+export declare const ColorInput: {
+    (props: ColorInputProps): import("react/jsx-runtime").JSX.Element;
     propTypes: {
         className: PropTypes.Requireable<string>;
         label: PropTypes.Requireable<string>;
