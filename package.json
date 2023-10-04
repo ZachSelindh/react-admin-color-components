@@ -1,7 +1,7 @@
 {
     "name": "react-admin-color-components",
-    "version": "1.0.2",
-    "description": "Colorpicker and ColorField for react-admin based on react-color",
+    "version": "1.0.3",
+    "description": "ColorInput and ColorField for react-admin based on react-color",
     "main": "lib/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",

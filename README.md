@@ -14,7 +14,7 @@ npm install react-admin-color-components --save
 
 This package provides a ColorInput component based on the [react-color](https://www.npmjs.com/package/react-color) pickers librray, as well as a corresponding ColorField and ColorSquare (which is used to display the current color in both aforementioned components) for use in a [react-admin](https://marmelab.com/react-admin/) application.
 
-The ColorInput's default picker is the PhotoshopPicker, but the prop `picker` can be used to override the default. Additional props for the picker can be passed as part of `pickerOptions`.
+The ColorInput's default picker is the PhotoshopPicker, but the prop `picker` can be used to override the default. Additional props for the picker can be passed as part of `pickerOptions`. The picker's header can be overriden by using the `pickerHeader` prop.
 
 The ColorInput accepts most react-admin input props, including `validate`, `defaultValue`, `fullWidth`, `helperText`, `sx`, etc., and (obviously) requires a `source` and a `label` to be defined in order to work correctly as a form input or filter.
 

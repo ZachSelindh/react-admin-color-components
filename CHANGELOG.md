@@ -1,5 +1,9 @@
 # react-admin-color-components Changelog
 
+## 1.0.3
+
+-   Added pickerHeader prop to ColorInput
+
 ## 1.0.2
 
 -   Fix component export
