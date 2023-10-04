@@ -5,7 +5,14 @@ import * as ReactColor from 'react-color';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import { useInput, FieldTitle, sanitizeInputRestProps, InputHelperText, CommonInputProps } from 'react-admin';
+import {
+    useInput,
+    FieldTitle,
+    useTranslateLabel,
+    sanitizeInputRestProps,
+    InputHelperText,
+    CommonInputProps,
+} from 'react-admin';
 import { ColorSquare } from './ColorSquare';
 import { TcolorSquareOptions } from './ColorField';
 
@@ -27,11 +34,22 @@ export type ColorInputProps = CommonInputProps & {
         | 'Slider'
         | 'Swatches'
         | 'Twitter';
+    pickerHeader?: string;
 };
 
 export const ColorInput = (props: ColorInputProps) => {
-    const { className, colorSquareOptions, helperText, label, picker, pickerOptions, resource, source, ...rest } =
-        props;
+    const {
+        className,
+        colorSquareOptions,
+        helperText,
+        label,
+        picker,
+        pickerOptions,
+        pickerHeader,
+        resource,
+        source,
+        ...rest
+    } = props;
 
     const {
         field,
@@ -43,6 +61,14 @@ export const ColorInput = (props: ColorInputProps) => {
         resource,
         source,
         ...rest,
+    });
+
+    const translateLabel = useTranslateLabel();
+
+    const translatedLabel = translateLabel({
+        label,
+        resource,
+        source,
     });
 
     const [showPicker, setShowPicker] = React.useState<boolean>(false);
@@ -89,7 +115,7 @@ export const ColorInput = (props: ColorInputProps) => {
                 <DialogContent>
                     <Picker
                         {...pickerOptions}
-                        header={label}
+                        header={pickerHeader || translatedLabel}
                         color={field.value}
                         onChangeComplete={handleChange}
                         onAccept={handleConfirm}
@@ -113,6 +139,7 @@ ColorInput.propTypes = {
     picker: (props, propName, componentName) =>
         !ReactColor[`${props[propName]}Picker`] &&
         new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`.`),
+    pickerHeader: PropTypes.string,
 };
 
 ColorInput.defaultProps = {
@@ -121,5 +148,6 @@ ColorInput.defaultProps = {
     margin: 'dense',
     picker: 'Photoshop',
     pickerOptions: {},
+    pickerHeader: '',
     variant: 'filled',
 };

@@ -8,6 +8,7 @@ export type ColorInputProps = CommonInputProps & {
         [x: string]: any;
     };
     picker?: 'Alpha' | 'Block' | 'Chrome' | 'Circle' | 'Compact' | 'Github' | 'Hue' | 'Material' | 'Photoshop' | 'Sketch' | 'Slider' | 'Swatches' | 'Twitter';
+    pickerHeader?: string;
 };
 export declare const ColorInput: {
     (props: ColorInputProps): import("react/jsx-runtime").JSX.Element;
@@ -21,6 +22,7 @@ export declare const ColorInput: {
         }>>;
         source: PropTypes.Requireable<string>;
         picker: (props: any, propName: any, componentName: any) => Error;
+        pickerHeader: PropTypes.Requireable<string>;
     };
     defaultProps: {
         defaultValue: string;
@@ -28,6 +30,7 @@ export declare const ColorInput: {
         margin: string;
         picker: string;
         pickerOptions: {};
+        pickerHeader: string;
         variant: string;
     };
 };
