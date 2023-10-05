@@ -12,13 +12,13 @@ npm install react-admin-color-components --save
 
 ![colorpicker.png](assets/colorpicker.png)
 
-This package provides a ColorInput component based on the [react-color](https://www.npmjs.com/package/react-color) pickers librray, as well as a corresponding ColorField and ColorSquare (which is used to display the current color in both aforementioned components) for use in a [react-admin](https://marmelab.com/react-admin/) application.
+This package provides a ColorInput component based on the [react-color](https://www.npmjs.com/package/react-color) pickers libray, as well as a corresponding ColorField and ColorSquare (which is used to display the current color in both aforementioned components) for use in a [react-admin](https://marmelab.com/react-admin/) application.
 
-The ColorInput's default picker is the PhotoshopPicker, but the prop `picker` can be used to override the default. Additional props for the picker can be passed as part of `pickerOptions`. The picker's header can be overriden by using the `pickerHeader` prop.
+The ColorInput's default picker is the PhotoshopPicker, but the prop `picker` can be used to override the default. Additional props for the picker can be passed as part of `pickerOptions`. The picker's header can be overriden using the `pickerHeader` prop.
 
-The ColorInput accepts most react-admin input props, including `validate`, `defaultValue`, `fullWidth`, `helperText`, `sx`, etc., and (obviously) requires a `source` and a `label` to be defined in order to work correctly as a form input or filter.
+The ColorInput accepts most react-admin input props, including `validate`, `defaultValue`, `fullWidth`, `helperText`, `sx`, etc., and requires a `source` to be defined in order to work correctly as a form input or filter.
 
-The ColorInput uses a "fragile controlled" input strategy in which the current field value is stored in React state while the picker is open, and the field value is only updated once `onChangeComplete` is called, which is usually at the point of closing the picker. If the picker is closed without confirming, such as clicking `Cancel` on the Photoshop picker, the field value will not be updated.
+The ColorInput uses a "fragile controlled" input strategy in which the current field value is stored in React state while the picker is open, and the field value is only updated once `onChangeComplete` is called, which is usually at the point of closing the picker. If the picker is closed without confirming, such as clicking `Cancel` on the Photoshop picker, the field's value will not be updated.
 
 This package is based on the previous work of [alexgschwend](https://github.com/alexgschwend) and [vascofg](https://github.com/vascofg), who built similar component libraries.
 
